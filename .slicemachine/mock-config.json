@@ -9,11 +9,12 @@
       },
       "content": {
         "config": {
-          "patternType": "PARAGRAPH",
+          "patternType": "STORY",
           "blocks": 1
         }
       }
-    }
+    },
+    "testing": {}
   },
   "slices": {
     "Post": {

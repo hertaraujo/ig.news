@@ -6,7 +6,7 @@ import { getPrismicClient } from "../../../services/prismic";
 import Head from "next/head";
 
 import styles from "../post.module.scss";
-import { getSession, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 

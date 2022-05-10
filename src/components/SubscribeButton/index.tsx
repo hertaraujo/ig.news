@@ -30,7 +30,7 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
 
       await stripe.redirectToCheckout({ sessionId });
     } catch (err) {
-      alert(err.message);
+      router.push("/500");
     }
   };
 

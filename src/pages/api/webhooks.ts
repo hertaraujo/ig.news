@@ -26,12 +26,12 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const buf = await buffer(req);
     const secret = req.headers["stripe-signature"];
-
+ 
     let event: Stripe.Event;
 
     try {
       event = stripe.webhooks.constructEvent(
-        buf,
+        req.body,
         secret,
         process.env.STRIPE_WEBHOOK_SECRET
       );

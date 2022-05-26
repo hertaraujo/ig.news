@@ -23,16 +23,16 @@ const relevantEvents = new Set([
   "customer.subscription.deleted",
 ]);
 
-export default async function (req: NextApiRequest, res: NextApiResponse) {
+export default async function (req: NextApiRequest, res: NextApiResponse, buf) {
   if (req.method === "POST") {
-    const buf = await buffer(req);
+    // const buf = await buffer(req);
     const secret = req.headers["stripe-signature"];
  
     let event: Stripe.Event;
 
     try {
       event = stripe.webhooks.constructEvent(
-        buf,
+        buf.toString(),
         secret,
         process.env.STRIPE_WEBHOOK_SECRET
       );

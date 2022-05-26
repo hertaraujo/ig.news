@@ -11,7 +11,7 @@ async function buffer(readable: Readable) {
     chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
   }
 
-  return Buffer.concat(chunks);
+  return Buffer.concat(chunks).toString('utf-8');
 }
 
 export const config = { api: { bodyParser: false } };
@@ -22,7 +22,7 @@ const relevantEvents = new Set([
   "customer.subscription.deleted",
 ]);
 
-export default async function (req, res: NextApiResponse) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const buf = await buffer(req);
     const secret = req.headers["stripe-signature"];
@@ -31,7 +31,7 @@ export default async function (req, res: NextApiResponse) {
 
     try {
       event = stripe.webhooks.constructEvent(
-        req.rawBody,
+        buf,
         secret,
         process.env.STRIPE_WEBHOOK_SECRET
       );

@@ -17,6 +17,7 @@
     "@stripe/stripe-js": "^1.29.0",
     "axios": "^0.27.2",
     "faunadb": "^4.5.4",
+    "micro": "^9.3.4",
     "next": "12.1.5",
     "next-auth": "^4.3.3",
     "next-slicezone": "^0.2.6",

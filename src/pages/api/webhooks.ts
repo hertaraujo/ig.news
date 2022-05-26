@@ -3,16 +3,17 @@ import { Readable } from "stream";
 import Stripe from "stripe";
 import { stripe } from "../../services/stripe";
 import { saveSubscription } from "./_lib/manageSubscription";
+import { buffer } from "micro";
 
-async function buffer(readable: Readable) {
+/* async function buffer(readable: Readable) {
   const chunks = [];
 
   for await (const chunk of readable) {
     chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
   }
 
-  return Buffer.concat(chunks).toString('utf-8');
-}
+  return Buffer.concat(chunks).toString('utf8');
+} */
 
 export const config = { api: { bodyParser: false } };
 

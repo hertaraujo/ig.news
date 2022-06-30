@@ -32,7 +32,9 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     try {
       const secret = req.headers["stripe-signature"];
       const buf = await buffer(req);
-      const body: string = buf.toString("utf8");
+      const body: string = `${buf.toString("utf8")}`;
+
+      console.log(body);
 
       raw = { body };
 

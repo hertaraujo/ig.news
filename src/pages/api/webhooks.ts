@@ -30,7 +30,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   let raw;
   if (req.method === "POST") {
     try {
-      const buf = await buffer(req);
+      const buf = await (await buffer(req)).toString();
       const secret = req.headers["stripe-signature"];
       raw = {
         reqB: req.body,

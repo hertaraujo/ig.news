@@ -34,7 +34,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       const secret = req.headers["stripe-signature"];
       raw = {
         req: req.body,
-        buf,
         // @ts-ignore
         reqBRaw: req.rawBody,
         hookSecret: process.env.STRIPE_WEBHOOK_SECRET,

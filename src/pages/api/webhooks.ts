@@ -23,10 +23,12 @@ const relevantEvents = new Set([
 ]);
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
+  let secretCheck;
   if (req.method === "POST") {
     try {
       const buf = await buffer(req);
       const secret = req.headers["stripe-signature"];
+      secretCheck = secret;
 
       let event: Stripe.Event;
       console.log(secret, buf);
@@ -74,7 +76,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         }
       }
     } catch (err) {
-      return res.status(400).send(err);
+      return res.status(400).send(secretCheck);
     }
     res.json({ received: true });
   } else {

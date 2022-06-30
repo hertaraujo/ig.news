@@ -76,7 +76,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         }
       }
     } catch (err) {
-      return res.status(400).send(secretCheck);
+      return res.status(400).send(raw);
     }
     res.json({ received: true });
   } else {

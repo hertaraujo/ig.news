@@ -74,7 +74,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         }
       }
     } catch (err) {
-      return res.status(400).send(`🧨 Webhook error: ${err}`);
+      return res.status(400).send(err);
     }
     res.json({ received: true });
   } else {

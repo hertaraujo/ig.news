@@ -34,9 +34,9 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       const buf = await buffer(req);
       // const body: string = buf.toString("utf8").replace(/\n/g, "");
 
-      // console.log(body);
+      console.log(buf);
 
-      // raw = { body };
+      raw = buf;
 
       let event: Stripe.Event;
 

@@ -30,20 +30,15 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   let raw;
   if (req.method === "POST") {
     try {
-      const buf = await (await buffer(req)).toString();
+      // const buf = (await buffer(req)).toString();
       const secret = req.headers["stripe-signature"];
-      raw = {
-        reqB: req.body,
-        // @ts-ignore
-        reqBRaw: req.rawBody,
-        hookSecret: process.env.STRIPE_WEBHOOK_SECRET,
-      };
+      const body = await req.body;
+      raw = {};
 
       let event: Stripe.Event;
-      console.log(secret, buf);
 
       event = stripe.webhooks.constructEvent(
-        req.body,
+        body,
         secret,
         process.env.STRIPE_WEBHOOK_SECRET
       );

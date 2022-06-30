@@ -3,7 +3,6 @@ import { Readable } from "stream";
 import Stripe from "stripe";
 import { stripe } from "../../services/stripe";
 import { saveSubscription } from "./_lib/manageSubscription";
-import getRawBody from 'raw-body'
 
 async function buffer(readable: Readable) {
   const chunks = [];
@@ -25,8 +24,7 @@ const relevantEvents = new Set([
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
-    // const buf = await buffer(req);
-    const buf = await getRawBody(req);
+    const buf = await buffer(req);
     const secret = req.headers["stripe-signature"];
 
     let event: Stripe.Event;
@@ -42,6 +40,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
 
     const { type } = event;
+
+    console.log(secret, event, type, buf);
 
     if (relevantEvents.has(type)) {
       try {

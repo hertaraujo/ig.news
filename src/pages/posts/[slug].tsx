@@ -11,7 +11,6 @@ interface PostProps {
   post: {
     slug: string;
     title: string;
-    excerpt: string;
     content: string;
     updatedAt: string;
   };

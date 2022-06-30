@@ -27,7 +27,7 @@ export default function Posts({ posts }: PostsProps) {
 
       <main className={styles.container}>
         <div className={styles.posts}>
-          {posts.map(post => (
+          {posts.map((post) => (
             <Link href={`/posts/${post.slug}`} key={post.slug}>
               <a>
                 <time>{post.updatedAt}</time>
@@ -50,13 +50,13 @@ export const getStaticProps: GetStaticProps = async () => {
     pageSize: 100,
   });
 
-  const posts = response.map(post => {
+  const posts = response.map((post) => {
     return {
       slug: post.id,
       title: prismicHelpers.asText(post.data.title),
       excerpt:
-        post.data.content.find(content => content.type === "paragraph")?.text ??
-        "",
+        post.data.content.find((content) => content.type === "paragraph")
+          ?.text ?? "",
       updatedAt: new Date(post.last_publication_date).toLocaleDateString(
         "pt-BR",
         {

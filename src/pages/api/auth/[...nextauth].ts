@@ -43,8 +43,8 @@ export default NextAuth({
         );
 
         return { ...session, activeSubscription: userActiveSubscription };
-      } catch (err){
-        // console.log(err)
+      } catch (err) {
+        console.log("erro ao adicionar à session a activeSubscription", err);
         return { ...session, activeSubscription: null };
       }
     },

@@ -3,8 +3,9 @@ import { Readable } from "stream";
 import Stripe from "stripe";
 import { stripe } from "../../services/stripe";
 import { saveSubscription } from "./_lib/manageSubscription";
+import { buffer } from "micro";
 
-async function buffer(readable: Readable) {
+/* async function buffer(readable: Readable) {
   const chunks = [];
 
   for await (const chunk of readable) {
@@ -12,7 +13,7 @@ async function buffer(readable: Readable) {
   }
 
   return Buffer.concat(chunks);
-}
+} */
 
 export const config = {
   api: {
@@ -30,9 +31,10 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   let raw;
   if (req.method === "POST") {
     try {
-      // const buf = (await buffer(req)).toString();
       const secret = req.headers["stripe-signature"];
-      const body = await req.body;
+      const buf = await buffer(req);
+      const body: string = buf.toString();
+
       raw = { body };
 
       let event: Stripe.Event;

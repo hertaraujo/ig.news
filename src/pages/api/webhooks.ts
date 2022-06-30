@@ -14,7 +14,11 @@ async function buffer(readable: Readable) {
   return Buffer.concat(chunks);
 }
 
-export const config = { api: { bodyParser: false } };
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 const relevantEvents = new Set([
   "checkout.session.completed",
@@ -28,13 +32,18 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     try {
       const buf = await buffer(req);
       const secret = req.headers["stripe-signature"];
-      raw = req.rawBody;
+      raw = {
+        req: req.body,
+        buf,
+        reqBRaw: req.rawBody,
+        hookSecret: process.env.STRIPE_WEBHOOK_SECRET,
+      };
 
       let event: Stripe.Event;
       console.log(secret, buf);
 
       event = stripe.webhooks.constructEvent(
-        req.rawBody,
+        buf,
         secret,
         process.env.STRIPE_WEBHOOK_SECRET
       );
@@ -76,7 +85,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         }
       }
     } catch (err) {
-      return res.status(400).send(raw);
+      return res.status(400).send(JSON.stringify(raw, null, 2));
     }
     res.json({ received: true });
   } else {

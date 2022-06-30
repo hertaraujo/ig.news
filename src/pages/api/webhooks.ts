@@ -32,7 +32,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     try {
       const secret = req.headers["stripe-signature"];
       const buf = await buffer(req);
-      const body: string = `${buf.toString("utf8")}`;
+      const body: string = buf.toString("utf8").replace(/\n/g, "");
 
       console.log(body);
 
@@ -83,7 +83,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         }
       }
     } catch (err) {
-      return res.status(400).send(JSON.stringify(raw, null, 2));
+      return res.status(400).send(JSON.stringify({ raw, err }, null, 2));
     }
     res.json({ received: true });
   } else {

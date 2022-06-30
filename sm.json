@@ -1,5 +1,77 @@
 {
   "_latest": "0.3.7",
   "apiEndpoint": "https://ignewshert.prismic.io/api/v2",
-  "libraries": ["@/slices"]
+  "libraries": ["@/slices"],
+  "body": {
+    "id": "evt_1LGRSsLx7KHdoKeX21sysTfZ",
+    "object": "event",
+    "api_version": "2020-08-27",
+    "created": 1656611262,
+    "data": {
+      "object": {
+        "id": "cs_test_b1iuz9Ll5TCQyQxGXbcj3dV6fNiazZdYV85hm0aDhseCvsBQGSDWHpv12u",
+        "object": "checkout.session",
+        "after_expiration": null,
+        "allow_promotion_codes": true,
+        "amount_subtotal": 990,
+        "amount_total": 990,
+        "automatic_tax": { "enabled": false, "status": null },
+        "billing_address_collection": "required",
+        "cancel_url": "https://ignews-hert.vercel.app/",
+        "client_reference_id": null,
+        "consent": null,
+        "consent_collection": null,
+        "currency": "usd",
+        "customer": "cus_LyODmmfXsjZK13",
+        "customer_creation": null,
+        "customer_details": {
+          "address": {
+            "city": "Barra Mansa",
+            "country": "BR",
+            "line1": "Rua Miguel Gomes de Souza",
+            "line2": "Boa Vista II",
+            "postal_code": "27336410",
+            "state": "RJ"
+          },
+          "email": "herbertaraujo.contact@gmail.com",
+          "name": "HERBERT S ARAUJO",
+          "phone": null,
+          "tax_exempt": "none",
+          "tax_ids": []
+        },
+        "customer_email": null,
+        "expires_at": 1656697527,
+        "livemode": false,
+        "locale": null,
+        "metadata": {},
+        "mode": "subscription",
+        "payment_intent": null,
+        "payment_link": null,
+        "payment_method_options": null,
+        "payment_method_types": ["card"],
+        "payment_status": "paid",
+        "phone_number_collection": { "enabled": false },
+        "recovered_from": null,
+        "setup_intent": null,
+        "shipping": null,
+        "shipping_address_collection": null,
+        "shipping_options": [],
+        "shipping_rate": null,
+        "status": "complete",
+        "submit_type": null,
+        "subscription": "sub_1LGRSpLx7KHdoKeXYn2f9eoc",
+        "success_url": "https://ignews-hert.vercel.app/posts",
+        "total_details": {
+          "amount_discount": 0,
+          "amount_shipping": 0,
+          "amount_tax": 0
+        },
+        "url": null
+      }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": { "id": null, "idempotency_key": null },
+    "type": "checkout.session.completed"
+  }
 }

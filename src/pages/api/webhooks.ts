@@ -1,11 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Readable } from "stream";
+import { Readable } from "node:stream";
 import Stripe from "stripe";
 import { stripe } from "../../services/stripe";
 import { saveSubscription } from "./_lib/manageSubscription";
-import { buffer } from "micro";
 
-/* async function buffer(readable: Readable) {
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+async function buffer(readable: Readable) {
   const chunks = [];
 
   for await (const chunk of readable) {
@@ -13,13 +18,7 @@ import { buffer } from "micro";
   }
 
   return Buffer.concat(chunks);
-} */
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+}
 
 const relevantEvents = new Set([
   "checkout.session.completed",

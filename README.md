@@ -45,14 +45,14 @@ Configure the services and in the project root create a .env.local file for the 
 
 ### **Clone the projeto**
 
-```bash
+```zsh
 $ git clone https://github.com/hertaraujo/ig.news.git
-$ cd ignews
+$ cd ig.news
 ```
 
 ### **Start the project**
 
-```bash
+```zsh
 $ yarn
 $ stripe listen --forward-to localhost:3000/api/webhooks 
 $ yarn dev

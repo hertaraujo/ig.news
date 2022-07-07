@@ -46,7 +46,7 @@ Configure the services and in the project root create a .env.local file for the 
 ### **Clone the projeto**
 
 ```bash
-$ git clone https://github.com/nelsonsantosaraujo/ignews.git
+$ git clone https://github.com/hertaraujo/ig.news.git
 $ cd ignews
 ```
 
